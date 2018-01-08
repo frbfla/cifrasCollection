@@ -14,10 +14,14 @@ public class CifraService {
 	
 	public Iterable<Cifra> obterTodos(){
 		
-		Iterable<Cifra> convidados = repository.findAll();
+		Iterable<Cifra> convidados = this.repository.findAll();
 		
 		return convidados;
 		
+	}
+
+	public void salvar(Cifra novaCifra) {
+		this.repository.save(novaCifra);		
 	}
 	
 }
