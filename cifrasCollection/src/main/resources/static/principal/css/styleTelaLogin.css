@@ -8,9 +8,11 @@ html {
 }
 
 body {
-  background-color: black;
+  background: black;
   font-family: 'Titillium Web', sans-serif;
-  background-image: url("principal/dummy/slide-2.jpg");
+  background-image: url("../dummy/slide-1.jpg");
+  background-repeat: repeat;
+  height: 948px;
 }
 
 a {

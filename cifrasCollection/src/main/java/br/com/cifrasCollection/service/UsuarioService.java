@@ -15,7 +15,13 @@ public class UsuarioService {
 	private UsuarioRepository repository;
 	
 	public List<Usuario> obterUsuario(String login, String senha) {
-//		return this.repository.findByLoginSenha(login, senha);
-		return null;
+		
+		List<Usuario> usuarios = this.repository.findByLoginSenha(login, senha);
+		
+		return usuarios;
+	}
+	
+	public Usuario salvar(Usuario usuario) {
+		return this.repository.save(usuario);
 	}
 }

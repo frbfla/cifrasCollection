@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8"></meta>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
@@ -24,25 +24,29 @@
 		<div id="site-content">
 			<header class="site-header">
 				<div class="container">
-					<a href="index.html" id="branding">
+					<a href="/" id="branding">
 						<img src="principal/dummy/logo.png" alt="Site Title" height="100" width="300"></img>
 					</a> <!-- #branding -->
 					
 					<nav class="main-navigation">
 						<button type="button" class="toggle-menu"><i class="fa fa-bars"></i></button>
 						<ul class="menu">
-							<li class="menu-item current-menu-item"><a href="index.html">Home</a></li>
+							<li class="menu-item current-menu-item"><a href="/">Home</a></li>
 							
-							<li class="menu-item"><a href="login.html">Login</a></li>
+							<li class="menu-item" th:if="${usuarioLogado eq null}"><a href="login.html">Login</a></li>
 							
-							<li class="menu-item" hidden="true"><a href="pesquisar.html">Pesquisar</a></li>
-							<li class="menu-item" hidden="true"><a href="cadastrar.html">Cadastrar</a></li>
+							<li class="menu-item" th:if="${usuarioLogado ne null}"><a href="pesquisar.html">Pesquisar</a></li>
+							<li class="menu-item" th:if="${usuarioLogado ne null}"><a href="cadastrar.html">Cadastrar</a></li>
 							
 							<li class="menu-item"><a href="contato.html">Contato</a></li>
 							<li class="menu-item"><a href="sobre.html">Sobre</a></li>				
 						</ul> <!-- .menu -->
 					</nav> <!-- .main-navigation -->
 					<div class="mobile-menu"></div>
+					<div class="usuarioLogado" th:if="${usuarioLogado ne null}">
+						<span th:text="${usuarioLogado.nome}"><a href="#">Sair</a></span>
+					</div>
+					
 				</div>
 			</header> <!-- .site-header -->
 			

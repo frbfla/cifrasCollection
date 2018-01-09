@@ -2693,3 +2693,9 @@ body {
         color: #fd5927; }
 
 /*# sourceMappingURL=style.css.map */
+
+div.usuarioLogado {
+	float: right;
+	color: white;
+	font-style: italic;
+}

@@ -10,5 +10,8 @@ import br.com.cifrasCollection.model.Usuario;
 
 public interface UsuarioRepository extends CrudRepository<Usuario, Long>{
 
+	@Query("SELECT user FROM usuario user where user.login = :login and user.senha=:senha")
+	List<Usuario> findByLoginSenha(@Param("login")String login, @Param("senha") String senha);
+
 
 }
