@@ -17,8 +17,13 @@ public class PrincipalController {
 	private CifraService service;
 	
 	@RequestMapping("/")
-	public String index(Model model){
+	public String index(){
 		return "index";
+	}
+	
+	@RequestMapping("login")
+	public String login(){
+		return "login";
 	}
 	
 	@RequestMapping("listacifras")
