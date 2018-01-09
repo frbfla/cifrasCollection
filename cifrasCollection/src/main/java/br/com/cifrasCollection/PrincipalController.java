@@ -17,7 +17,7 @@ public class PrincipalController {
 	private CifraService service;
 	
 	@RequestMapping("/")
-	public String index(){
+	public String index(Model model){
 		return "index";
 	}
 	
