@@ -1,8 +1,12 @@
 package br.com.cifrasCollection.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+
+import br.com.cifrasCollection.enumeration.TomMusica;
 
 @Entity(name="cifra")
 public class Cifra {
@@ -13,10 +17,14 @@ public class Cifra {
 	
 	private String nome;
 	
-	private String tom;
+	@Enumerated
+	private TomMusica tom;
 	
 	private String cantor;
 	
+	private String linkYoutube;
+	
+	@Lob
 	private byte[] fotoCifra;
 
 	public Long getId() {
@@ -35,11 +43,11 @@ public class Cifra {
 		this.nome = nome;
 	}
 
-	public String getTom() {
+	public TomMusica getTom() {
 		return tom;
 	}
 
-	public void setTom(String tom) {
+	public void setTom(TomMusica tom) {
 		this.tom = tom;
 	}
 
@@ -49,6 +57,14 @@ public class Cifra {
 
 	public void setCantor(String cantor) {
 		this.cantor = cantor;
+	}
+
+	public String getLinkYoutube() {
+		return linkYoutube;
+	}
+
+	public void setLinkYoutube(String linkYoutube) {
+		this.linkYoutube = linkYoutube;
 	}
 
 	public byte[] getFotoCifra() {
@@ -63,10 +79,7 @@ public class Cifra {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((cantor == null) ? 0 : cantor.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((tom == null) ? 0 : tom.hashCode());
 		return result;
 	}
 
@@ -79,28 +92,14 @@ public class Cifra {
 		if (getClass() != obj.getClass())
 			return false;
 		Cifra other = (Cifra) obj;
-		if (cantor == null) {
-			if (other.cantor != null)
-				return false;
-		} else if (!cantor.equals(other.cantor))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		if (tom == null) {
-			if (other.tom != null)
-				return false;
-		} else if (!tom.equals(other.tom))
-			return false;
 		return true;
-	} 
+	}
+
 	
 	
 	

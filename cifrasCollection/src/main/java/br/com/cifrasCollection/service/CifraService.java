@@ -20,8 +20,8 @@ public class CifraService {
 		
 	}
 
-	public void salvar(Cifra novaCifra) {
-		this.repository.save(novaCifra);		
+	public Cifra salvar(Cifra novaCifra) {
+		return this.repository.save(novaCifra);		
 	}
 	
 }

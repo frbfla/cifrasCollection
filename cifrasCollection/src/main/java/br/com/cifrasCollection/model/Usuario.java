@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import br.com.cifrasCollection.enumeration.TipoPerfil;
+
 @Entity(name="usuario")
 public class Usuario {
 	
@@ -16,6 +18,8 @@ public class Usuario {
 	private String login;
 	
 	private String senha;
+	
+	private TipoPerfil perfil;
 
 	public Long getId() {
 		return id;
@@ -48,7 +52,15 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
+	
+	public TipoPerfil getPerfil() {
+		return perfil;
+	}
+	
+	public void setPerfil(TipoPerfil perfil) {
+		this.perfil = perfil;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
