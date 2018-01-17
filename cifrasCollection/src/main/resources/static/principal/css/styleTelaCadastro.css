@@ -1,14 +1,14 @@
-main {
+body {
 	background: black;
   	font-family: 'Titillium Web', sans-serif;
   	background-image: url("../dummy/slide-1.jpg");
  	background-repeat: repeat;
- 	height: 500px; 
+ 	height: 949px; 
 }
 
 h2 {
 	text-align: center !important;
-	color: #FD5927;
+	color: #FD5927 !important;
 	font-style: italic;
 }
 
@@ -33,4 +33,24 @@ form {
 
 span {
 	color: green;
+}
+
+p {
+	color: grey;
+}
+
+.site-footer p{
+	color: #848484;
+}
+
+tr{
+	color: #E8E8E8;	
+	font-size: 14px;
+}
+
+td {
+	font-size: 14px !important;
+}
+.table-extra {
+	border: 1px !important;
 }

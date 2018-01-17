@@ -12,6 +12,7 @@
 		<!-- Loading main css file -->
 		<link rel="stylesheet" href="principal/style.css"></link>
 		<link rel="stylesheet" href="principal/css/styleTelaCadastro.css"></link>
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 		
 		<!--[if lt IE 9]>
 		<script src="js/ie-support/html5.js"></script>
@@ -36,8 +37,8 @@
 							
 							<li class="menu-item" th:if="${usuarioLogado eq null}"><a href="login.html">Login</a></li>
 							
-							<li class="menu-item" th:if="${usuarioLogado ne null}"><a href="pesquisar.html">Pesquisar</a></li>
-							<li class="menu-item" th:if="${usuarioLogado ne null}"><a href="cadastrar.html">Cadastrar</a></li>
+							<li class="menu-item" ><a href="pesquisarcifras.html">Pesquisar</a></li>
+							<li class="menu-item" ><a href="cadastrarcifras.html">Cadastrar</a></li>
 							
 							<li class="menu-item"><a href="contato.html">Contato</a></li>
 							<li class="menu-item"><a href="sobre.html">Sobre</a></li>				
@@ -84,13 +85,18 @@
 							</div>
 							
 							<div class="form-group">
-								<label for="arquivo" class="labels">Arquivo</label> 
-								<input id="arquivo" name="arquivo" type="file" class="file" required="required"
-									data-show-upload="false" data-show-caption="true" 
-									data-msg-placeholder="Escolha o arquivo para upload (Formato PDF)..."></input>
+								<div class="input-group input-file" name="arquivo">
+									<span class="input-group-btn">
+						        		<button class="btn btn-danger btn-choose" type="button">Escolha</button>
+						    		</span>
+						    		<input type="text" class="form-control" placeholder='Escolha um arquivo...' />
+						    		<span class="input-group-btn">
+						       			 <button class="btn btn-warning btn-reset" type="button">Limpar</button>
+						    		</span>
+								</div>
 							</div>
 							
-							<button type="submit" class="btn btn-success">Salvar</button>
+							<button type="submit" class="btn btn-default pull-right">Salvar</button>
 						</form>	
 					</fieldset>
 				</div>

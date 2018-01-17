@@ -16,12 +16,21 @@
 						<th>Nome</th>
 						<th>Tom</th>
 						<th>Cantor</th>
+						<th>Link Youtube</th>
+						<th>Arquivo</th>
+						
 					</tr>
 				</thead>
 				<tr th:each="cifra : ${cifras}">
 					<td><span th:text="${cifra.nome}"></span></td>
 					<td><span th:text="${cifra.tom}"></span></td>
 					<td><span th:text="${cifra.cantor}"></span></td>
+					<td>
+						<span th:text="${cifra.linkYouTube}"></span>
+					</td>
+					<td>
+						
+					</td>
 				</tr>
 
 			</table>

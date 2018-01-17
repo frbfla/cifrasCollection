@@ -5,13 +5,14 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1"></meta>
 		
-		<title>Cifras Collection</title>
+		<title>About Us| Band Template</title>
 		<!-- Loading third party fonts -->
 		<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900" rel="stylesheet" type="text/css"></link>
 		<link href="principal/fonts/font-awesome.min.css" rel="stylesheet" type="text/css"></link>
 		<!-- Loading main css file -->
 		<link rel="stylesheet" href="principal/style.css"></link>
-	
+		<link rel="stylesheet" href="principal/css/styleTelaCadastro.css"></link>
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 		
 		<!--[if lt IE 9]>
 		<script src="js/ie-support/html5.js"></script>
@@ -20,9 +21,9 @@
 
 	</head>
 
-	<body class="header-collapse">
+	<body>
 		
-		<div id="site-content">
+		<div id="site-content">			
 			<header class="site-header">
 				<div class="container">
 					<a href="/" id="branding">
@@ -52,42 +53,51 @@
 			</header> <!-- .site-header -->
 			
 			<main>
-				<div class="hero">
-					<div class="slider">
-						<ul class="slides">
-							<li class="lazy-bg" data-background="principal/dummy/slide-1.jpg">
-								<div class="container">
-									<h2 class="slide-title">Cifras Collection</h2>
-									<h3 class="slide-subtitle">O seu repositório de cifras online</h3>
-									<p class="slide-desc">Armazene suas cifras e acesse de qualquer lugar de forma rápida e fácil...</p>
-	
-									<a href="sobre.html" class="button cut-corner">Leia mais</a>
-								</div>
-							</li>
-							<li class="lazy-bg" data-background="principal/dummy/slide-2.jpg">
-								<div class="container">
-										<h2 class="slide-title">Cifras Collection</h2>
-										<h3 class="slide-subtitle">O seu repositório de cifras online</h3>
-										<p class="slide-desc">Site criado para auxiliar o armazenamento do aplicativo cifras collection, facilitando o download e upload de cifras e partituras para as contas pessoais dos usuários.</p>
-	
-										<a href="sobre.html" class="button cut-corner">Leia mais</a>
-								</div>
-							</li>
-							<li class="lazy-bg" data-background="principal/dummy/slide-3.jpg">
-								<div class="container">
-										<h2 class="slide-title">Cifras Collection</h2>
-										<h3 class="slide-subtitle">O seu repositório de cifras online</h3>
-										<p class="slide-desc">Utilize o aplicativo mobile para visualizar suas cifras...</p>
-	
-										<a href="sobre.html" class="button cut-corner">Leia mais</a>
-								</div>
-							</li>
-						</ul>
-					</div>
+				<div class="container">
+					<fieldset>
+						<h2>Pesquisa de Cifras</h2>						
+				
+						<form action="pesquisarCifra" method="post" enctype="multipart/form-data">
+							<div class="form-group">
+								<label for="filtro" class="labels">Filtro (nome ou cantor)</label> 
+								<input type="text" class="form-control" id="filtro" name="filtro"/>
+							</div>
+													
+							<button type="submit" class="btn btn-success">Pesquisar</button>
+						</form>	
+						
+						<div id="listaDeCifras">
+							<table class="table table-extra" th:if="${cifras ne null}">
+								<thead>
+									<tr>
+										<th>Nome</th>
+										<th>Tom</th>
+										<th>Cantor</th>
+										<th>Link Youtube</th>
+										<th>Arquivo</th>
+										
+									</tr>
+								</thead>
+								<tr th:each="cifra : ${cifras}">
+									<td><span th:text="${cifra.nome}"></span></td>
+									<td><span th:text="${cifra.tom}"></span></td>
+									<td><span th:text="${cifra.cantor}"></span></td>
+									<td><span th:text="${cifra.linkYoutube}"></span></td>
+									<td>
+										<a id="branding" th:href="@{visualizarCifra/{id}(id=${cifra.id})}">
+											<img src="principal/dummy/visualizar.png" alt="Visualizer cifras" height="40" width="40"></img>
+										</a>
+									</td>
+								</tr>
+				
+							</table>
+						</div>
+					</fieldset>
 				</div>
-			
 			</main>
-			<footer class="site-footer site-footer-extra">
+			
+			
+			<footer class="site-footer">
 				<div class="container">
 					<img src="principal/dummy/logo.png" alt="Site Name" width="200" height="80"></img>
 					
@@ -104,9 +114,10 @@
 				</div>
 			</footer> <!-- .site-footer -->
 
-		</div> <!-- #site-content -->
+		</div> <!-- #site-content -->		
 
-		<script src="principal/js/jquery-1.11.1.min.js"></script>		
+
+		<script src="principal/js/jquery-1.11.1.min.js"></script>	
 		<script src="principal/js/plugins.js"></script>
 		<script src="principal/js/app.js"></script>
 		

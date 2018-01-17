@@ -37,6 +37,11 @@ public class PrincipalController {
 		return "cadastrarcifras";
 	}
 	
+	@RequestMapping("pesquisarcifras")
+	public String pesquisarCifras(Model model){
+		return "pesquisarcifras";
+	}
+	
 	@RequestMapping(value = "salvar", method = RequestMethod.POST )
 	public String salvar(@RequestParam("nome") String nome, @RequestParam("tom")String tom, 
 			@RequestParam("cantor") String cantor, Model model){

@@ -1,14 +1,16 @@
 package br.com.cifrasCollection;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +26,28 @@ public class CifrasController {
 	@Autowired
 	private CifraService service;
 
+	@RequestMapping(value = "pesquisarCifra", method = RequestMethod.POST )
+	public String pesquisar(@RequestParam("filtro") String filtro, Model model) {
+		
+		List<Cifra> cifras = null;
+		Iterable<Cifra> listaCifrasCompleta = null;
+		
+		if (filtro != null && !filtro.equals("")) {
+			cifras = this.service.obterCifrasFiltro(filtro);	
+		} else {
+			listaCifrasCompleta = this.service.obterTodos();
+		}	
+		
+		
+		if (cifras != null && cifras.size() > 0) {
+			model.addAttribute("cifras", cifras);
+		} else {
+			model.addAttribute("cifras", listaCifrasCompleta);
+		}		
+		
+		return "pesquisarcifras";
+		
+	}
 	
 	@RequestMapping(value = "cadastrarCifra", method = RequestMethod.POST )
 	public String salvar(@RequestParam("nome") String nome, @RequestParam("tom")String tom, 
@@ -61,5 +85,21 @@ public class CifrasController {
 		
 		return "cadastrarcifras";
 		
+	}
+	
+	@RequestMapping("/visualizarCifra/{id}")
+	public ResponseEntity<byte[]> visualizarCifra(@PathVariable("id") Long id) {
+		Cifra cifra = this.service.obterCifraPorId(Long.valueOf(id));
+		
+		HttpHeaders headers = new HttpHeaders();
+
+	    headers.setContentType(MediaType.parseMediaType("application/pdf"));
+	    String filename = "pdf1.pdf";
+
+	    headers.add("content-disposition", "inline;filename=" + filename);
+	  
+	    headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+	    ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(cifra.getFotoCifra(), headers, HttpStatus.OK);
+	    return response;
 	}
 }

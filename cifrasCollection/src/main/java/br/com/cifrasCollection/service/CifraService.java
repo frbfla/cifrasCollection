@@ -1,5 +1,7 @@
 package br.com.cifrasCollection.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,16 +14,20 @@ public class CifraService {
 	@Autowired
 	private CifraRepository repository;
 	
-	public Iterable<Cifra> obterTodos(){
-		
-		Iterable<Cifra> convidados = this.repository.findAll();
-		
-		return convidados;
-		
-	}
-
 	public Cifra salvar(Cifra novaCifra) {
 		return this.repository.save(novaCifra);		
+	}
+	
+	public List<Cifra> obterCifrasFiltro(String filtro){
+		return this.repository.findByFiltro(filtro);
+	}
+
+	public Iterable<Cifra> obterTodos() {
+		return this.repository.findAll();
+	}
+
+	public Cifra obterCifraPorId(Long id) {
+		return this.repository.findOne(id);
 	}
 	
 }
