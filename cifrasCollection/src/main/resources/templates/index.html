@@ -11,8 +11,7 @@
 		<link href="principal/fonts/font-awesome.min.css" rel="stylesheet" type="text/css"></link>
 		<!-- Loading main css file -->
 		<link rel="stylesheet" href="principal/style.css"></link>
-	
-		
+				
 		<!--[if lt IE 9]>
 		<script src="js/ie-support/html5.js"></script>
 		<script src="js/ie-support/respond.js"></script>
@@ -24,32 +23,8 @@
 		
 		<div id="site-content">
 			<header class="site-header">
-				<div class="container">
-					<a href="/" id="branding">
-						<img src="principal/dummy/logo.png" alt="Site Title" height="100" width="300"></img>
-					</a> <!-- #branding -->
-					
-					<nav class="main-navigation">
-						<button type="button" class="toggle-menu"><i class="fa fa-bars"></i></button>
-						<ul class="menu">
-							<li class="menu-item current-menu-item"><a href="/">Home</a></li>
-							
-							<li class="menu-item" th:if="${usuarioLogado eq null}"><a href="login.html">Login</a></li>
-							
-							<li class="menu-item" ><a href="pesquisarcifras.html">Pesquisar</a></li>
-							<li class="menu-item" ><a href="cadastrarcifras.html">Cadastrar</a></li>
-							
-							<li class="menu-item"><a href="contato.html">Contato</a></li>
-							<li class="menu-item"><a href="sobre.html">Sobre</a></li>				
-						</ul> <!-- .menu -->
-					</nav> <!-- .main-navigation -->
-					<div class="mobile-menu"></div>
-					<div class="usuarioLogado" th:if="${usuarioLogado ne null}">
-						<span th:text="${usuarioLogado.nome}"><a href="#">Sair</a></span>
-					</div>
-					
-				</div>
-			</header> <!-- .site-header -->
+				<div th:replace="/template/header :: header"></div>
+			</header>
 			
 			<main>
 				<div class="hero">
@@ -88,20 +63,7 @@
 			
 			</main>
 			<footer class="site-footer site-footer-extra">
-				<div class="container">
-					<img src="principal/dummy/logo.png" alt="Site Name" width="200" height="80"></img>
-					
-					<address>
-						<p><a href="tel:24999413515">(24) 999413515</a> <br /> <a href="mailto:frbfla@gmail.com">frbfla@gmail.com</a></p> 
-					</address> 
-								
-					<div class="social-links">
-						<a href="#"><i class="fa fa-facebook-square"></i></a>
-						<a href="#"><i class="fa fa-twitter"></i></a>					
-					</div> <!-- .social-links -->
-					
-					<p class="copy">Copyright 2018 Fast Manners. Designed by Themezy. All right reserved</p>
-				</div>
+				<div th:replace="/template/footer :: footer"></div>
 			</footer> <!-- .site-footer -->
 
 		</div> <!-- #site-content -->

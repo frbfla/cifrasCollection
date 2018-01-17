@@ -29,11 +29,38 @@
 			<main>
 				<div class="form">
 					<ul class="tab-group">
-						<li class="tab active"><a href="#signup">Cadastrar</a></li>
-						<li class="tab"><a href="#login">Logar</a></li>
+						<li class="tab active"><a href="#login">Logar</a></li>
+						<li class="tab"><a href="#signup">Cadastrar</a></li>
 					</ul>
 		
 					<div class="tab-content">
+						<div id="login">
+							<h1>Bem-vindo!</h1>
+		
+							<form action="logar" method="post">
+		
+								<div class="field-wrap">
+									<label> Email<span class="req">*</span>
+									</label> <input type="email" required="required" autocomplete="off" id="login" name="login"/>
+								</div>
+		
+								<div class="field-wrap">
+									<label> Senha<span class="req">*</span>
+									</label> <input type="password" required="required" autocomplete="off" id="senha" name="senha"/>
+								</div>
+		
+								<p class="forgot">
+									<a href="#">Esqueceu a senha?</a>
+								</p>
+		
+								<span th:text="${mensagemLogin}"></span>
+								<button class="button button-block">Entrar</button>
+								
+		
+							</form>
+		
+						</div>
+		
 						<div id="signup">
 							<h1>Cadastro gratuito</h1>
 							
@@ -64,33 +91,6 @@
 								</div>
 		
 								<button type="submit" class="button button-block">Enviar</button>
-		
-							</form>
-		
-						</div>
-		
-						<div id="login">
-							<h1>Bem-vindo!</h1>
-		
-							<form action="logar" method="post">
-		
-								<div class="field-wrap">
-									<label> Email<span class="req">*</span>
-									</label> <input type="email" required="required" autocomplete="off" id="login" name="login"/>
-								</div>
-		
-								<div class="field-wrap">
-									<label> Senha<span class="req">*</span>
-									</label> <input type="password" required="required" autocomplete="off" id="senha" name="senha"/>
-								</div>
-		
-								<p class="forgot">
-									<a href="#">Esqueceu a senha?</a>
-								</p>
-		
-								<span th:text="${mensagemLogin}"></span>
-								<button class="button button-block">Entrar</button>
-								
 		
 							</form>
 		

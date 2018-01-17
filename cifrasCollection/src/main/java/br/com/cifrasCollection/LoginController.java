@@ -2,6 +2,8 @@ package br.com.cifrasCollection;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +22,7 @@ public class LoginController {
 	
 	@RequestMapping(value= "cadastrar",  method = RequestMethod.POST )
     public String cadastrar(@RequestParam("nome") String nome, @RequestParam("sobrenome") String sobrenome,
-    		@RequestParam("email") String email, @RequestParam("senha") String senha, Model model) {
+    		@RequestParam("email") String email, @RequestParam("senha") String senha, HttpSession session, Model model) {
         
 		Usuario usuario = new Usuario();
 		usuario.setNome(nome + " " + sobrenome);
@@ -35,17 +37,17 @@ public class LoginController {
         	model.addAttribute("mensagemCadastro", "Erro ao cadastrar, verifique as informações");
         }
 		
-		model.addAttribute("usuarioLogado", cadastrado);
+		session.setAttribute("usuarioLogado", cadastrado);
 		 
 		return "login";
     }
 	
 	@RequestMapping(value= "logar",  method = RequestMethod.POST  )
-    public String logar(@RequestParam("login") String login, @RequestParam("senha") String senha, Model model) {
+    public String logar(@RequestParam("login") String login, @RequestParam("senha") String senha, HttpSession session, Model model) {
 		List<Usuario> usuarios = this.service.obterUsuario(login, senha);
 		
         if(usuarios != null && usuarios.size() == 1) {
-        	model.addAttribute("usuarioLogado", usuarios.get(0));
+        	session.setAttribute("usuarioLogado", usuarios.get(0));
             return "index";
         } 
         

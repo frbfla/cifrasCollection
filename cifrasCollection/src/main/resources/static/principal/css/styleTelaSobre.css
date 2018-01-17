@@ -1,0 +1,14 @@
+body {
+	background: black;
+  	font-family: 'Titillium Web', sans-serif;
+  	background-image: url("../dummy/slide-1.jpg");
+ 	background-repeat: repeat;
+ 	height: 949px; 
+}
+
+h2 {
+	text-align: center !important;
+	color: #FD5927 !important;
+	font-style: italic;
+}
+

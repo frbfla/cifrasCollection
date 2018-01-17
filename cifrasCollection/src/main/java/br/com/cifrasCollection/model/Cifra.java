@@ -5,7 +5,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 
+import br.com.cifrasCollection.enumeration.TipoVisibilidade;
 import br.com.cifrasCollection.enumeration.TomMusica;
 
 @Entity(name="cifra")
@@ -24,9 +26,15 @@ public class Cifra {
 	
 	private String linkYoutube;
 	
+	@Enumerated
+	private TipoVisibilidade visibilidade;
+	
 	@Lob
 	private byte[] fotoCifra;
-
+	
+	@ManyToOne	
+	private Usuario usuario;
+	
 	public Long getId() {
 		return id;
 	}
@@ -74,7 +82,23 @@ public class Cifra {
 	public void setFotoCifra(byte[] fotoCifra) {
 		this.fotoCifra = fotoCifra;
 	}
-
+	
+	public TipoVisibilidade getVisibilidade() {
+		return visibilidade;
+	}
+	
+	public void setVisibilidade(TipoVisibilidade visibilidade) {
+		this.visibilidade = visibilidade;
+	}
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+		
 	@Override
 	public int hashCode() {
 		final int prime = 31;

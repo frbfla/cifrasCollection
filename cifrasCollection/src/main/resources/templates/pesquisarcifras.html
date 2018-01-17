@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1"></meta>
 		
-		<title>About Us| Band Template</title>
+		<title>Pesquisar Cifra</title>
 		<!-- Loading third party fonts -->
 		<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900" rel="stylesheet" type="text/css"></link>
 		<link href="principal/fonts/font-awesome.min.css" rel="stylesheet" type="text/css"></link>
@@ -25,49 +25,24 @@
 		
 		<div id="site-content">			
 			<header class="site-header">
-				<div class="container">
-					<a href="/" id="branding">
-						<img src="principal/dummy/logo.png" alt="Site Title" height="100" width="300"></img>
-					</a> <!-- #branding -->
-					
-					<nav class="main-navigation">
-						<button type="button" class="toggle-menu"><i class="fa fa-bars"></i></button>
-						<ul class="menu">
-							<li class="menu-item current-menu-item"><a href="/">Home</a></li>
-							
-							<li class="menu-item" th:if="${usuarioLogado eq null}"><a href="login.html">Login</a></li>
-							
-							<li class="menu-item" ><a href="pesquisarcifras.html">Pesquisar</a></li>
-							<li class="menu-item" ><a href="cadastrarcifras.html">Cadastrar</a></li>
-							
-							<li class="menu-item"><a href="contato.html">Contato</a></li>
-							<li class="menu-item"><a href="sobre.html">Sobre</a></li>				
-						</ul> <!-- .menu -->
-					</nav> <!-- .main-navigation -->
-					<div class="mobile-menu"></div>
-					<div class="usuarioLogado" th:if="${usuarioLogado ne null}">
-						<span th:text="${usuarioLogado.nome}"><a href="#">Sair</a></span>
-					</div>
-					
-				</div>
-			</header> <!-- .site-header -->
+				<div th:replace="/template/header :: header"></div>
+			</header>
 			
 			<main>
 				<div class="container">
 					<fieldset>
 						<h2>Pesquisa de Cifras</h2>						
 				
-						<form action="pesquisarCifra" method="post" enctype="multipart/form-data">
+						<form action="pesquisarCifra" method="post" enctype="multipart/form-data" class="contact-form">
 							<div class="form-group">
-								<label for="filtro" class="labels">Filtro (nome ou cantor)</label> 
-								<input type="text" class="form-control" id="filtro" name="filtro"/>
+								<input type="text" class="form-control" id="filtro" name="filtro" placeholder="Filtro (nome ou cantor)..."/>
 							</div>
 													
-							<button type="submit" class="btn btn-success">Pesquisar</button>
+							<button type="submit" class="btn btn-default">Pesquisar</button>
 						</form>	
 						
 						<div id="listaDeCifras">
-							<table class="table table-extra" th:if="${cifras ne null}">
+							<table class="table" th:if="${cifras ne null}">
 								<thead>
 									<tr>
 										<th>Nome</th>
@@ -97,23 +72,9 @@
 			</main>
 			
 			
-			<footer class="site-footer">
-				<div class="container">
-					<img src="principal/dummy/logo.png" alt="Site Name" width="200" height="80"></img>
-					
-					<address>
-						<p><a href="tel:24999413515">(24) 999413515</a> <br /> <a href="mailto:frbfla@gmail.com">frbfla@gmail.com</a></p> 
-					</address> 
-								
-					<div class="social-links">
-						<a href="#"><i class="fa fa-facebook-square"></i></a>
-						<a href="#"><i class="fa fa-twitter"></i></a>					
-					</div> <!-- .social-links -->
-					
-					<p class="copy">Copyright 2018 Fast Manners. Designed by Themezy. All right reserved</p>
-				</div>
+			<footer class="site-footer site-footer-extra">
+				<div th:replace="/template/footer :: footer"></div>
 			</footer> <!-- .site-footer -->
-
 		</div> <!-- #site-content -->		
 
 

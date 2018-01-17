@@ -2699,3 +2699,8 @@ div.usuarioLogado {
 	color: white;
 	font-style: italic;
 }
+
+.leading-extra {
+	font-style: italic !important;
+	text-align: justify;
+}

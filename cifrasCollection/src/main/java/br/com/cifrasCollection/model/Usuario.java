@@ -1,8 +1,12 @@
 package br.com.cifrasCollection.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import br.com.cifrasCollection.enumeration.TipoPerfil;
 
@@ -20,6 +24,9 @@ public class Usuario {
 	private String senha;
 	
 	private TipoPerfil perfil;
+	
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
+	private List<Cifra> cifras;
 
 	public Long getId() {
 		return id;
@@ -59,6 +66,14 @@ public class Usuario {
 	
 	public void setPerfil(TipoPerfil perfil) {
 		this.perfil = perfil;
+	}
+	
+	public List<Cifra> getCifras() {
+		return cifras;
+	}
+	
+	public void setCifras(List<Cifra> cifras) {
+		this.cifras = cifras;
 	}
 	
 	@Override

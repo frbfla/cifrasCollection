@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import br.com.cifrasCollection.enumeration.TipoVisibilidade;
 import br.com.cifrasCollection.enumeration.TomMusica;
 import br.com.cifrasCollection.model.Cifra;
 import br.com.cifrasCollection.service.CifraService;
@@ -33,6 +34,7 @@ public class PrincipalController {
 	public String cadastrarCifras(Model model){
 		
 		model.addAttribute("tons", EnumSet.allOf(TomMusica.class));
+		model.addAttribute("tiposVisibilidade", EnumSet.allOf(TipoVisibilidade.class));
 		
 		return "cadastrarcifras";
 	}
@@ -40,6 +42,16 @@ public class PrincipalController {
 	@RequestMapping("pesquisarcifras")
 	public String pesquisarCifras(Model model){
 		return "pesquisarcifras";
+	}
+	
+	@RequestMapping("contato")
+	public String contato(Model model){
+		return "contato";
+	}
+	
+	@RequestMapping("sobre")
+	public String sobre(Model model){
+		return "sobre";
 	}
 	
 	@RequestMapping(value = "salvar", method = RequestMethod.POST )

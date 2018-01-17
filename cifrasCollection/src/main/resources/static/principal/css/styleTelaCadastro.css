@@ -32,7 +32,7 @@ form {
 }
 
 span {
-	color: green;
+	color: #848484;
 }
 
 p {
@@ -54,3 +54,16 @@ td {
 .table-extra {
 	border: 1px !important;
 }
+
+select {
+	background: #353535 !important;
+    display: block;
+    width: 100%;
+    padding: 15px;
+    color: #999999 !important;
+    margin-bottom: 10px;
+    border: none !important; 
+
+}
+
+

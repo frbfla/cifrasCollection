@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.cifrasCollection.model.Cifra;
+import br.com.cifrasCollection.model.Usuario;
 import br.com.cifrasCollection.repository.CifraRepository;
 
 @Service
@@ -18,8 +19,8 @@ public class CifraService {
 		return this.repository.save(novaCifra);		
 	}
 	
-	public List<Cifra> obterCifrasFiltro(String filtro){
-		return this.repository.findByFiltro(filtro);
+	public List<Cifra> obterCifrasFiltro(String filtro, Usuario usuario){
+		return this.repository.findByFiltro(filtro, usuario);
 	}
 
 	public Iterable<Cifra> obterTodos() {

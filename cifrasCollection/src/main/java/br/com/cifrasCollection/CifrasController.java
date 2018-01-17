@@ -3,6 +3,8 @@ package br.com.cifrasCollection;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import br.com.cifrasCollection.enumeration.TomMusica;
 import br.com.cifrasCollection.model.Cifra;
+import br.com.cifrasCollection.model.Usuario;
 import br.com.cifrasCollection.service.CifraService;
 
 @Controller
@@ -27,13 +30,14 @@ public class CifrasController {
 	private CifraService service;
 
 	@RequestMapping(value = "pesquisarCifra", method = RequestMethod.POST )
-	public String pesquisar(@RequestParam("filtro") String filtro, Model model) {
+	public String pesquisar(@RequestParam("filtro") String filtro, HttpServletRequest request, Model model) {
 		
 		List<Cifra> cifras = null;
 		Iterable<Cifra> listaCifrasCompleta = null;
+		Usuario usuario = (Usuario)request.getSession().getAttribute("usuarioLogado");
 		
 		if (filtro != null && !filtro.equals("")) {
-			cifras = this.service.obterCifrasFiltro(filtro);	
+			cifras = this.service.obterCifrasFiltro(filtro, usuario);	
 		} else {
 			listaCifrasCompleta = this.service.obterTodos();
 		}	
@@ -52,12 +56,15 @@ public class CifrasController {
 	@RequestMapping(value = "cadastrarCifra", method = RequestMethod.POST )
 	public String salvar(@RequestParam("nome") String nome, @RequestParam("tom")String tom, 
 			@RequestParam("cantor") String cantor, @RequestParam("linkYouTube") String linkYouTube,
-			@RequestParam("arquivo") MultipartFile fotoDaCifra, Model model){
+			@RequestParam("arquivo") MultipartFile fotoDaCifra, HttpServletRequest request, Model model){
 				
 		try {
+			Usuario usuario = (Usuario)request.getSession().getAttribute("usuarioLogado");
+			
 			Cifra novaCifra = new Cifra();
 			novaCifra.setNome(nome);
-			TomMusica tomMusica = TomMusica.getEnumByDescricao(tom);		
+			TomMusica tomMusica = TomMusica.getEnumByDescricao(tom);	
+			
 			
 			if (tomMusica != null) {
 				novaCifra.setTom(tomMusica);
@@ -66,6 +73,7 @@ public class CifrasController {
 			novaCifra.setCantor(cantor);
 			novaCifra.setLinkYoutube(linkYouTube);
 			novaCifra.setFotoCifra(fotoDaCifra.getBytes());
+			novaCifra.setUsuario(usuario);
 			
 			Cifra cifraCadastrada = service.salvar(novaCifra);
 			
@@ -94,7 +102,7 @@ public class CifrasController {
 		HttpHeaders headers = new HttpHeaders();
 
 	    headers.setContentType(MediaType.parseMediaType("application/pdf"));
-	    String filename = "pdf1.pdf";
+	    String filename = "pdf" + id + ".pdf";
 
 	    headers.add("content-disposition", "inline;filename=" + filename);
 	  

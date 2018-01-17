@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1"></meta>
 		
-		<title>About Us| Band Template</title>
+		<title>Cadastrar Cifra</title>
 		<!-- Loading third party fonts -->
 		<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900" rel="stylesheet" type="text/css"></link>
 		<link href="principal/fonts/font-awesome.min.css" rel="stylesheet" type="text/css"></link>
@@ -25,32 +25,8 @@
 		
 		<div id="site-content">			
 			<header class="site-header">
-				<div class="container">
-					<a href="/" id="branding">
-						<img src="principal/dummy/logo.png" alt="Site Title" height="100" width="300"></img>
-					</a> <!-- #branding -->
-					
-					<nav class="main-navigation">
-						<button type="button" class="toggle-menu"><i class="fa fa-bars"></i></button>
-						<ul class="menu">
-							<li class="menu-item current-menu-item"><a href="/">Home</a></li>
-							
-							<li class="menu-item" th:if="${usuarioLogado eq null}"><a href="login.html">Login</a></li>
-							
-							<li class="menu-item" ><a href="pesquisarcifras.html">Pesquisar</a></li>
-							<li class="menu-item" ><a href="cadastrarcifras.html">Cadastrar</a></li>
-							
-							<li class="menu-item"><a href="contato.html">Contato</a></li>
-							<li class="menu-item"><a href="sobre.html">Sobre</a></li>				
-						</ul> <!-- .menu -->
-					</nav> <!-- .main-navigation -->
-					<div class="mobile-menu"></div>
-					<div class="usuarioLogado" th:if="${usuarioLogado ne null}">
-						<span th:text="${usuarioLogado.nome}"><a href="#">Sair</a></span>
-					</div>
-					
-				</div>
-			</header> <!-- .site-header -->
+				<div th:replace="/template/header :: header"></div>
+			</header>
 			
 			<main>
 				<div class="container">
@@ -58,16 +34,15 @@
 						<h2>Cadastro de Cifras</h2>
 						
 						<span th:text="${mensagemCadastro}"></span>
-						<form action="cadastrarCifra" method="post" enctype="multipart/form-data">
+						<form action="cadastrarCifra" method="post" enctype="multipart/form-data" class="contact-form">
 							<div class="form-group">
-								<label for="nome" class="labels">Nome da música</label> 
-								<input type="text" class="form-control" id="nome" name="nome" required="required"/>
+								<input type="text" class="form-control" id="nome" name="nome" required="required" placeholder="Nome da música..."/>
 							</div>
 							
 							<div class="form-group">
-								<label for="tom" class="labels">Tom da música</label> 
-							    <select class="form-control" id="tom" name="tom" required="required">
-							        <option th:each="tomM : ${tons}"
+								<select class="form-control" id="tom" name="tom" required="required">
+								    <option value="" disabled="disabled" selected="selected">-- Tom da Música --</option>
+									<option th:each="tomM : ${tons}"
 							                th:value="${tomM.descricao}"
 							                th:text="${tomM.descricao}"
 							                th:selected="${tomM.equals(tom)}"/>
@@ -75,13 +50,21 @@
 							</div>
 							
 							<div class="form-group">
-								<label for="cantor" class="labels">Compositor/Cantor da música</label> 
-								<input type="text" class="form-control" id="cantor" name="cantor" />
+								<input type="text" class="form-control" id="cantor" name="cantor" placeholder="Compositor/Cantor da música.."/>
 							</div>
 							
 							<div class="form-group">
-								<label for="linkYouTube" class="labels">Link YouTube</label> 
-								<input type="text" class="form-control" id="linkYouTube" name="linkYouTube"/>
+								<input type="text" class="form-control" id="linkYouTube" name="linkYouTube" placeholder="Link Youtube..."/>
+							</div>
+							
+							<div class="form-group">
+								<select class="form-control" id="visibilidade" name="visibilidade" required="required">
+								    <option value="" disabled="disabled" selected="selected">-- Visibilidade --</option>
+									<option th:each="tipo : ${tiposVisibilidade}"
+							                th:value="${tipo.descricao}"
+							                th:text="${tipo.descricao}"
+							                th:selected="${tipo.equals(visibilidade)}"/>
+							    </select>
 							</div>
 							
 							<div class="form-group">
@@ -103,21 +86,8 @@
 			</main>
 			
 			
-			<footer class="site-footer">
-				<div class="container">
-					<img src="principal/dummy/logo.png" alt="Site Name" width="200" height="80"></img>
-					
-					<address>
-						<p><a href="tel:24999413515">(24) 999413515</a> <br /> <a href="mailto:frbfla@gmail.com">frbfla@gmail.com</a></p> 
-					</address> 
-								
-					<div class="social-links">
-						<a href="#"><i class="fa fa-facebook-square"></i></a>
-						<a href="#"><i class="fa fa-twitter"></i></a>					
-					</div> <!-- .social-links -->
-					
-					<p class="copy">Copyright 2018 Fast Manners. Designed by Themezy. All right reserved</p>
-				</div>
+			<footer class="site-footer site-footer-extra">
+				<div th:replace="/template/footer :: footer"></div>
 			</footer> <!-- .site-footer -->
 
 		</div> <!-- #site-content -->		
